@@ -1,5 +1,5 @@
 ## Dual Dynamic Threshold Adjustment Strategy
-This repository contains the official PyTorch implementation of the paper:**Dual Dynamic Threshold Adjustment Strategy**
+This repository contains the official PyTorch implementation of the paper: **Dual Dynamic Threshold Adjustment Strategy**
 
 
 Introduction
