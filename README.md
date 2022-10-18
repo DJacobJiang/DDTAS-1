@@ -1,5 +1,5 @@
-## Deep Metric Learning based on Meta-Mining Strategy with Semi-Global Information
-This repository contains the official PyTorch implementation of the paper:**Deep Metric Learning based on Meta-Mining Strategy with Semi-Global Information**
+## Dual Dynamic Threshold Adjustment Strategy
+This repository contains the official PyTorch implementation of the paper:**Dual Dynamic Threshold Adjustment Strategy**
 
 
 Introduction
