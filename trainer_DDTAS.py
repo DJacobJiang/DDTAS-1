@@ -64,42 +64,9 @@ def train_DDTAS(epoch, model, criterion_i, criterion, criterion_m, optimizer, tr
         embed_feat_1 = meta_net(inputs_t)
 
 
+      
         # -----------------------------------------------------------------------
-        # --------------------- Bulid Semi-Global Dictionary --------------------
-
-        # First destination for trainset features --- build the Semi-Global dictionary. Alg Flow.(2)(5)
-        # for j in range(0, labels_t.size(0)):
-        #     if labels_t[j].item() in Glob:
-        #         Glob[labels_t[j].item()] = torch.cat((Glob[labels_t[j].item()], embed_feat_1[j].view(1, embed_feat_1[j].size()[0]).detach().cpu()), 0)
-        #         if Glob[labels_t[j].item()].size(0) > args.d_size:   # Dictionary size (number of features (images) per class)
-        #             Glob[labels_t[j].item()]=Glob[labels_t[j].item()][1:, ]
-        #             # print('DSSSSS',Glob[labels_t[j].item()].size(0))
-        #         # else:
-        #             # print('DSSSSS', Glob[labels_t[j].item()].size(0))
-        #     else:
-        #
-        #         Glob[labels_t[j].item()] = embed_feat_1[j].view(1, embed_feat_1[j].size()[0]).detach().cpu()
-        #
-        # # When the number of dictionary class is greater than initial class number for Semi-Global Dictionary,
-        # # we started training.
-        # if len(list(Glob.keys())) < 100:
-        #     print('Dictionary_loading..',len(list(Glob.keys())),'%')
-        #     continue
-        #
-        # for index, key in enumerate(list(Glob.keys())):
-        #     if index == 0:
-        #         global_feature = Glob[key]
-        #         global_label = [key] * Glob[key].size(0)
-        #     else:
-        #         global_feature = torch.cat((global_feature, Glob[key]), 0)
-        #         global_label += [key] * Glob[key].size(0)
-        #
-        # # Get Semi-Global_features from Semi-Global Dictionary.
-        # global_feature = to_var(global_feature, requires_grad=False)
-        # global_label = to_var(torch.from_numpy(numpy.array(global_label)), requires_grad=False)
-
-        # -----------------------------------------------------------------------
-        # ---------------------- Weight Generation Process ----------------------
+        # ---------------------- Threshold Generation Process ----------------------
 
         # Trainset features' another direction --- weight initialization(Alg Flow.(6))
         margin_t = to_var(torch.ones(inputs_t.size(0)).mul(train_margin), requires_grad=False)
