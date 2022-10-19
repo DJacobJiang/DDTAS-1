@@ -26,7 +26,7 @@ def to_var(x, requires_grad=True):
 
 # Here, we annotate the code according to the number of steps in the algorithmic flow in our paper:
 
-def train_MMSI(epoch, model, criterion_i, criterion, criterion_m, optimizer, train_loader, valid_loader, margin, Glob, args , it_100, it_100_g):
+def train_DDTAS(epoch, model, criterion_i, criterion, criterion_m, optimizer, train_loader, valid_loader, margin, Glob, args , it_100, it_100_g):
 
     train_margin = margin
     losses = AverageMeter()
