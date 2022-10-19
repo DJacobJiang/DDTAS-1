@@ -16,7 +16,7 @@ from utils.list_ini import list_ini, list_append
 from utils.ckptest import ckptest, test, ckptest_I
 
 # from trainer import train
-from trainer_MMSI import train_MMSI
+from trainer_DDTAS import train_DDTAS
 from trainer import train
 
 from utils import orth_reg
@@ -66,8 +66,8 @@ def main(args):
     total = sum([param.nelement() for param in model.parameters()])
     print('  + Number of params: %.2fM' % (total / 1e6))
     # print('initial model is save at %s' % save_dir)
-    if args.MMSI == 1:
-        #In MMSI method, the same DML loss has three functional forms:
+    if args.OTG == 1:
+        #In OTG method, the same DML loss has three functional forms:
         # 1.S--Select Pair (in outer loop)
         criterion_i = losses.create('S' + args.loss, margin=args.margin, alpha=args.alpha, base=args.loss_base).cuda()
         # 2.G--Generated Gradient Weight (in outer loop)
@@ -86,7 +86,7 @@ def main(args):
         sampler=FastRandomIdentitySampler(data.train, num_instances=args.num_instances),
         drop_last=True, pin_memory=True, num_workers=args.nThreads)
 
-    if args.MMSI == 1:
+    if args.OTG == 1:
         valid_loader = torch.utils.data.DataLoader(
             data.train, batch_size=args.val_batch_size,
             sampler=FastRandomIdentitySampler(data.train, num_instances=args.val_num_instances),
@@ -113,9 +113,9 @@ def main(args):
 
         if epoch <= 1:
             optimizer.param_groups[0]['lr_mul'] = 0.1
-        if args.MMSI == 1:
+        if args.OTG == 1:
             # print('aaaaaaaaaaaaammsiaaaaaaaaaaaaaaaaaaaaa')
-            losse, Glob_now ,it_100,it_100_g = train_MMSI(epoch=epoch, model=model, criterion=criterion,
+            losse, Glob_now ,it_100,it_100_g = train_OTG(epoch=epoch, model=model, criterion=criterion,
                                     criterion_i=criterion_i,
                                     criterion_m=criterion_m,
                                     optimizer=optimizer,
