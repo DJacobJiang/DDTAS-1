@@ -88,7 +88,7 @@ def args():
 
     parser.add_argument('--margin_type', type=int, default=1)
 
-    parser.add_argument('--MMSI', type=int, default=1)
+    parser.add_argument('--OTG', type=int, default=1)
     parser.add_argument('--d_size', type=int, default=1000)
 
 
