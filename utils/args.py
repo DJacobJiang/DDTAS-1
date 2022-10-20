@@ -54,7 +54,7 @@ def args():
     # Resume from checkpoint
     parser.add_argument('--resume', '-r', default=None, help='the path of the pre-trained model')
 
-    parser.add_argument('--resume_sop', '-r_sop', default='/home/jxr/proj/MMSI/models/MS_SOP_784ckp.pth.tar',
+    parser.add_argument('--resume_sop', '-r_sop', default='/home/jxr/proj/DDTAS/models/MS_SOP_784ckp.pth.tar',
                         help='the path of the pre-trained model')
 
     # train
