@@ -30,7 +30,7 @@ def to_var(x, requires_grad=True):
     return Variable(x, requires_grad=requires_grad)
 
 # def train(epoch, model, criterion, optimizer, train_loader, args):
-def train_MMSI(epoch, model, criterion_i, criterion, criterion_m, optimizer, train_loader, valid_loader, margin, Glob, args):
+def train_DDTAS(epoch, model, criterion_i, criterion, criterion_m, optimizer, train_loader, valid_loader, margin, Glob, args):
     train_margin = margin
 
     losses = AverageMeter()
