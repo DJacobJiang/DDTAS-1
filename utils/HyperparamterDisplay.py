@@ -18,13 +18,13 @@ def display(args):
     print('Loss Function \t%s' % args.loss)
     print('Alpha \t %d' % args.alpha)
     print('Begin to fine tune %s Network' % args.net)
-    if args.MMSI == 1:
-        print(15 * '-', 'MMSI ON', 15 * '-')
-        print('MMSI Hyperparamter:')
+    if args.OTG == 1:
+        print(15 * '-', 'OTG ON', 15 * '-')
+        print('DDTAS Hyperparamter:')
         print('Val Batch Size  \t %d' % args.val_batch_size)
         print('Val Num-Instance  \t %d' % args.val_num_instances)
         print('Semi-Globa Size \t %d' % args.d_size)
     else:
-        print(15 * '-', 'MMSI OFF', 15 * '-')
+        print(15 * '-', 'OTG OFF', 15 * '-')
     
     print(40*'#')
