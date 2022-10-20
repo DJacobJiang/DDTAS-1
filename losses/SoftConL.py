@@ -6,11 +6,10 @@ from torch.autograd import Variable
 import numpy as np
 
 def sigmoid(x):
-    # 直接返回sigmoid函数
     return 1. / (1. + np.exp(-x))
-class MSLoss(nn.Module):
+class SoftContrastiveLoss(nn.Module):
     def __init__(self, alpha=10, beta=2, margin=0.5, hard_mining=1, **kwargs):
-        super(MSLoss, self).__init__()
+        super(SoftContrastiveLoss, self).__init__()
         self.margin = margin
         self.alpha = alpha
         self.beta = beta
@@ -141,52 +140,12 @@ class MSLoss(nn.Module):
 
                 length_ap += len(pos_pair)
                 length_an += len(neg_pair)
-                # print('sum',torch.sum(torch.exp(self.alpha * (neg_pair - base))))
-                # print('beta:',self.beta)
-                # if (len(neg_pair)) / (len(pos_pair_)) >1:
-                #     tol_tre = (sigmoid(len(neg_pair) / len(pos_pair_))) /5
-                #     # print('ap_n',margin+(tol_tre*margin),'an_n',(margin/10)-(tol_tre*(margin/10)))
-                #     margin_ap_t = margin + (tol_tre * margin)
-                #     margin_an_t = (margin / 10) - (tol_tre * (margin / 10))
-                #     if margin_ap_t>0:
-                #         if margin_an_t>0:
-                #             # print(margin_ap_t)
-                #             neg_pairt = torch.relu(neg_pair_ + (margin_an_t) - pos_pair_[0])
-                #             # print(margin,margin_ap_t)
-                #             pos_pairt = torch.relu(neg_pair_[-1] - pos_pair_ + margin_ap_t)
-                #             # print('BBBB', length_ap_t)
-                #             neg_pairt = torch.masked_select(neg_pairt, neg_pairt > 0) - (margin_an_t) + pos_pair_[0]
-                #             pos_pairt = -torch.masked_select(pos_pairt, pos_pairt > 0) + margin_ap_t + neg_pair_[-1]
-                #             # global pos_pairt
-                #             length_ap_t += len(pos_pairt)
-                #             length_an_t += len(neg_pairt)
-                #
-                #             if len(pos_pairt)<len(pos_pair):
-                #                 print(1111111111111111)
-                #             # print('BBBB',length_an)
-                #             if len(pos_pairt) < len(pos_pair):
-                #                 print('?')
-                #
-                #             # print(3,len(pos_pairt) > len(pos_pair))
-                #             if len(neg_pairt) < 1 or len(pos_pairt) < 1:
-                #                 print('aaaaaaaaaaaaaaaaa')
-                #                 c += 1
-                #                 continue
-                #     else:
-                #         print(1111111111111111111111111111)
-                # pos_loss = 2.0/self.beta * torch.log(1 + torch.sum(torch.exp(-self.beta * (pos_pair - base))))
-                # neg_loss = 2.0/self.alpha * torch.log(1 + torch.sum(torch.exp(self.alpha * (neg_pair - base))))
-                #Bio
+                
                 pos_loss = 2.0/self.beta * torch.mean(torch.log(1 + torch.exp(-self.beta*(pos_pair - base))))
                 neg_loss = 2.0/self.alpha * torch.mean(torch.log(1 + torch.exp(self.alpha*(neg_pair - base))))
                 # pos_loss = torch.mean(torch.log(1 + torch.exp(-self.beta * (pos_pair - base))))
                 # neg_loss = torch.mean(torch.log(1 + torch.exp(self.alpha * (neg_pair - base))))
                 loss.append(neg_loss + pos_loss)
-                # loss.append(pos_loss)
-                # a = len(pos_pairt)-len(pos_pair)
-                # if a<0:
-                #     print(11111111111111111)
-                # (len(pos_pairt) - len(pos_pair))
 
             else:
                 # print('hello world')
