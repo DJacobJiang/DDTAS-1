@@ -18,11 +18,6 @@ __factory = {
     'Con': ContrastiveLoss,
     'MS': MSLoss,
     'SoftCon': SoftContrastiveLoss ,
-
-    'SMS': MS_ini,
-    'GMS': Global_MS_m,
-    'WMS': W_MS,
-
     'Binomial': BinomialLoss,
 
     'Tri' : TripletLoss
