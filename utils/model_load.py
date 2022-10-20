@@ -6,37 +6,15 @@ import torch
 import torch.nn as nn
 
 def model_loader(args,start):
-    if args.MMSI == 1:
+    if args.OTG == 1:
         args.net = args.net + '_MetaAda'
         model = models.create(args.net, data=args.data, pretrained=True, dim=args.dim)
     else:
         # print('agdddddddd',args.dim)
         model = models.create(args.net, data=args.data, pretrained=True, dim=args.dim)
 
-    if args.resume is None:
-        if args.loss == 'MS':
-            print('MS')
-        #     if args.data == 'car':
-        #         resume = '/home/jxr/proj/MMSI/models/MS_CAR_8559ckp.pth.tar'
-        #     elif args.data == 'cub':
-        #         resume = '/home/jxr/proj/MMSI/models/MS_CUB_6707ckp.pth.tar'
-        #     elif args.data == 'product':
-        #         resume = '/home/jxr/proj/MMSI/models/MS_SOP_784ckp.pth.tar'
-        #     print('load model from {}'.format(resume))
-        #     chk_pt = load_checkpoint(resume)
-        #     weight = chk_pt['state_dict']
-        #     start = chk_pt['epoch']
-        #     start = 0
-        #     checkpoint = weight  # 获取模型参数
-        #     model_dict = model.state_dict()
-        #     state_dict = {k: v for k, v in checkpoint.items() if k in model_dict.keys()}
-        #     print("matched parameters: %d/%d" % (len(state_dict), len(model_dict)))
-        #
-        #     model_dict.update(state_dict)
-        #     model.load_state_dict(model_dict)
-            model_dict = model.state_dict()
-        else:
-            model_dict = model.state_dict()
+    if args.resume is None:       
+        model_dict = model.state_dict()
     else:
         # resume model
         print('load model from {}'.format(args.resume))
@@ -119,7 +97,7 @@ def model_loader(args,start):
 
 def model_loader_sop(args,start):
     print('SOP_dataset')
-    if args.MMSI == 1:
+    if args.OTG == 1:
         args.net = args.net + '_MetaAda'
         model = models.create(args.net, data=args.data, pretrained=True, dim=args.dim)
     else:
