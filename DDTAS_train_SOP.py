@@ -16,7 +16,7 @@ from utils.list_ini import list_ini, list_append
 from utils.ckptest import ckptest, test, ckptest_I
 
 # from trainer import train
-from trainer_MMSI_SOP import train_MMSI ,train
+from trainer_DDTAS_SOP import train_MMSI ,train
 # from trainer_SOP import train
 
 from utils import orth_reg
