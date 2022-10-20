@@ -52,8 +52,8 @@ def ckptest_I(args):
 
     if args.resume is None:
         print('*' * 10, 'IMGN', '*' * 10)
-        checkpoint = load_checkpoint('/home/jxr/proj/MMSI/models/bn_inception-52deb4733.pth')
-        # checkpoint = load_checkpoint('/home/jxr/proj/MMSI/models/resnet50-19c8e357.pth')
+        checkpoint = load_checkpoint('/home/jxr/proj/DDTAS/models/bn_inception-52deb4733.pth')
+        # checkpoint = load_checkpoint('/home/jxr/proj/DDTAS/models/resnet50-19c8e357.pth')
         # checkpoint = load_checkpoint(args.resume)
         epoch = 0
         Rank1 = []
