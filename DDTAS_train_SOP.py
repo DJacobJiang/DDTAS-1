@@ -55,7 +55,6 @@ def set_bn_eval(m):
 
 def main(args):
     # s_ = time.time()
-    print(args.MMSI)
     save_dir = args.save_dir
     mkdir_if_missing(save_dir)
 
@@ -66,8 +65,8 @@ def main(args):
     model, start, optimizer = model_loader_sop(args, start)
 
     print('initial model is save at %s' % save_dir)
-    if args.MMSI == 1:
-        # In MMSI method, the same DML loss has three functional forms:
+    if args.OTS == 1:
+        # In OTS method, the same DML loss has three functional forms:
         # 1.S--Select Pair (in outer loop)
         criterion_i = losses.create('S' + args.loss, margin=args.margin, alpha=args.alpha, base=args.loss_base).cuda()
         # 2.G--Generated Gradient Weight (in outer loop)
@@ -86,7 +85,7 @@ def main(args):
         sampler=FastRandomIdentitySampler(data.train, num_instances=args.num_instances),
         drop_last=True, pin_memory=True, num_workers=args.nThreads)
 
-    if args.MMSI == 1:
+    if args.OTG == 1:
         valid_loader = torch.utils.data.DataLoader(
             data.train, batch_size=args.val_batch_size,
             sampler=FastRandomIdentitySampler(data.train, num_instances=args.val_num_instances),
@@ -101,8 +100,8 @@ def main(args):
     # ckptest_I(args)
     for epoch in range(start, args.epochs):
 
-        if args.MMSI == 1:
-            losse, Glob_now = train_MMSI(epoch=epoch, model=model, criterion=criterion,
+        if args.OTG == 1:
+            losse, Glob_now = train_DDTAS(epoch=epoch, model=model, criterion=criterion,
                                     criterion_i=criterion_i,
                                     criterion_m=criterion_m,
                                     optimizer=optimizer,
