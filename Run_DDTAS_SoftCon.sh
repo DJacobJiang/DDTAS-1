@@ -62,5 +62,4 @@ CUDA_VISIBLE_DEVICES=2,3 python DDTAS_train.py --net ${NET} \
 --save_step 5 \
 --ratio ${RATIO} \
 --margin ${MARGIN} \
---MMSI ${MMSI} \
 --d_size ${DSIZE} \
